@@ -62,6 +62,7 @@
                         <li class="nav-item"><a class="nav-link" href="#problem">Problem Description</a></li>
                         <li class="nav-item"><a  href="#data">Data sources</a></li>
                         <li class="nav-item"><a class="nav-link" href="#model">Model</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#UI">User Studies</a></li>
                         <li class="nav-item"><a class="nav-link" href="#results">Results</a></li>
                         <li class="nav-item"><a class="nav-link" href="https://github.com/Spandan-Madan/Spotify">Github</a></li>
                     </ul>
@@ -263,8 +264,7 @@
                                 <div class="main_title">
                                     <h2>What makes playlist continuation hard?</h2>
                                 </div>
-                                <p>Should a "good" continuation preserve the mood of the playlist (For ex: happy, sad), or the utility (For ex: Travel, date night, workout)? Or should it maximize similarity in meaning of lyrics? similarity of the audio? Spotify currently relies on experts to design playlists given the inherent ambiguity.
-                                <p>Our system tackles this problem by using multiple data sources and using a data driven approach to identify the relative importance of these different signals using a Bayesian framework. Furthermore, because of it's interpretability, it can be used to make different suggestions which preserve the mood, lyrics meaning, or utility.</p>
+                                <p>Should a "good" continuation preserve the mood of the playlist (For ex: happy, sad), or the utility (For ex: Travel, date night, workout)? Or should it maximize similarity in meaning of lyrics? similarity of the audio? Given the inherent ambiguity of this task, streaming companies like Spotify currently rely on experts to design playlists for a given mood or a use case!
                                 <!--a class="read_btn" href="#">Read more</a-->
                             </div>
                         </div>
@@ -294,8 +294,7 @@
                                 <div class="main_title">
                                     <h2>Project Focus: Data Sources</h2>
                                 </div>
-                                <p>Should a "good" continuation preserve the mood of the playlist (For ex: happy, sad), or the utility (For ex: Travel, date night, workout)? Or should it maximize similarity in meaning of lyrics? similarity of the audio?</p>
-                                <p>Spotify currently relies on experts to design playlists given the inherent ambiguity. Our system tries to automate this task using a data driven approach. Furthermore, because of it's interpretability, it can be used to make different suggestions which preserve the mood, lyrics meaning, or utility.</p>
+                                <p> Our system tackles this problem by using multiple data sources and a data driven approach to identify the relative importance of these different signals using a Bayesian framework. Because of it's interpretability, it can be used to make different suggestions which preserve the mood, lyrics meaning, or utility.</p>
                                 <!--a class="read_btn" href="#">Read more</a-->
                             </div>
                         </div>
@@ -340,7 +339,6 @@
 
         <a name="model"><section class="Model details"></a>
         <div class="container">
-                <div class="container">
                     <center>
                         <h2>Model Details</h2>
                     </center>
@@ -353,8 +351,9 @@
                          
                         <div class="col-lg-12">
                             <div class="d_feature_text">
-                                <p>Should a "good" continuation preserve the mood of the playlist (For ex: happy, sad), or the utility (For ex: Travel, date night, workout)? Or should it maximize similarity in meaning of lyrics? similarity of the audio?</p>
-                                <p>Spotify currently relies on experts to design playlists given the inherent ambiguity. Our system tries to automate this task using a data driven approach. Furthermore, because of it's interpretability, it can be used to make different suggestions which preserve the mood, lyrics meaning, or utility.</p>
+                                <p> There are over 400 million songs in the Million Playlist Dataset. For any model, to be able to identify top 10 songs from a set of 400 million is an extremely daunting task. Most past works have approached this tasks in either a collaborative filtering like approach, where they ignore the content of the song and only use people's usage patterns, or using content driven approaches which try to identify features that best reflect song similarity. We adapt a hybrid technique here. We start with collaborative filtering like approach called Track2Vec to identify a pool of songs that are good candidates for suggestion. Track2Vec is analogous to Word2vec, and is trained similarly by treating playlists as documents and songs as words. In our analysis, we found that top 10,000 candidates suggested by the "pooling" model is able to recover all the ground truth suggestions for a given playlist with about 80% recall.</p>
+
+                                <p> Information about track in the candidate pool generated from above dataset is embedded into a vector space. One embedding for each kind of information: Artist, Track, Lyrics, Sound Features and so on. For each of these embeddings, we use a different metric. Multiple metrics were tried (including cosine, L2, L1) and the best one was chosen. A fair assumption is that a non-linear function of these pieces of information will be a good global feature for a song. The way we approach this is by learning transformations such that a weighted linear combination of the transformed features can approximate the unkown non-linear function. The transformations tried for different features ranged from word2vec like methods to LSTMs for lyrics. Finally, we learn the weights for the linear combination mentioned above using a Bayesian optimization approach which tries to reduce the r-precision across the whole dataset.
                                 <!--a class="read_btn" href="#">Read more</a-->
                             </div>
                         </div>
@@ -364,9 +363,7 @@
             </div>
         </section>
 
-        <hr class="style14">
-
-        <section class="Embeddings Details">
+        <!--section class="Embeddings Details">
         <div class="container">
                 <div class="digital_feature p_100">
                     <div class="row">
@@ -382,17 +379,17 @@
                                 </div>
                                 <p>Should a "good" continuation preserve the mood of the playlist (For ex: happy, sad), or the utility (For ex: Travel, date night, workout)? Or should it maximize similarity in meaning of lyrics? similarity of the audio?</p>
                                 <p>Spotify currently relies on experts to design playlists given the inherent ambiguity. Our system tries to automate this task using a data driven approach. Furthermore, because of it's interpretability, it can be used to make different suggestions which preserve the mood, lyrics meaning, or utility.</p>
-                                <!--a class="read_btn" href="#">Read more</a-->
                             </div>
                         </div>
                        
                     </div>
                 </div>
             </div>
-        </section>
+        </section-->
 
         <hr class="style14">
-        <section class="UI">
+        
+        <a name="UI"><section class="UI"></a>
         <div class="container">
                 <div class="digital_feature p_100">
                     <div class="row">
@@ -406,8 +403,9 @@
                                 <div class="main_title">
                                     <h2>UI for collecting feedback</h2>
                                 </div>
-                                <p>Should a "good" continuation preserve the mood of the playlist (For ex: happy, sad), or the utility (For ex: Travel, date night, workout)? Or should it maximize similarity in meaning of lyrics? similarity of the audio?</p>
-                                <p>Spotify currently relies on experts to design playlists given the inherent ambiguity. Our system tries to automate this task using a data driven approach. Furthermore, because of it's interpretability, it can be used to make different suggestions which preserve the mood, lyrics meaning, or utility.</p>
+                                <p> In order to obtain user feedback on our results, and as a means to obtain results for evaluation which respect the notion that there are multiple possible playlist continuations which all would be equally good to a user, we made a UI to collect information from users. Furthermore, this system also provides us with a way to see how utility driven playlists can be generated by tuning the weights of different features in our prediction model.</p>
+
+                                <p> For instance, it is reasonable to assume that for a playlist which is about "break-ups", it would make more sense to suggest songs with similar lyrics. However, for a playlist for "working-out", sound features would be better. However, there are nuances of correlations between these features missed out in this assumption. By generating experiments that weigh one feature more than another, and seeing people's response to it, we can identify the optimal importance weights for the feature, given a particular target utility or mood.
                                 <!--a class="read_btn" href="#">Read more</a-->
                             </div>
                         </div>
@@ -421,14 +419,18 @@
 
         <a name="results"><section class="results"></a>
         <div class="container">
-                <div class="digital_feature p_100">
-                    <div class="row">
-                         <div class="col-lg-12">
-                            <div class="d_feature_img">
-                                <img src="img/results.svg">
-                            </div>
+                <div class="row">
+                     <div class="col-lg-12">
+                        <div class="d_feature_img">
+                            <img src="img/results.svg">
                         </div>
-                       
+                    </div>
+                </div>
+                <div class="row">
+                     <div class="col-lg-12">
+                        <div class="d_feature_test" style="padding-top: 20px">
+                            <p> We show here a comparison of our results to the current leaderboards on the Spotify RecSys challenge. As is clear, our model beats the current top submissions by a huge margin. However, there is a caveats to this analysis. Firstly, our model uses 8 features as opposed to the 3 in the guidelines for the RecSys challenge. This highlights the importance of using more features for playlist continuation. We plan to make a variation of our model with 3 features for a more direct comparison as well.</p>
+                        </div>
                     </div>
                 </div>
             </div>
